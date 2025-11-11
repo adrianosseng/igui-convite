@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/igui-convite/static/css/main.bd289d3a.css",
+    "main.js": "/igui-convite/static/js/main.375b0313.js",
+    "static/js/453.263c0154.chunk.js": "/igui-convite/static/js/453.263c0154.chunk.js",
+    "index.html": "/igui-convite/index.html",
+    "main.bd289d3a.css.map": "/igui-convite/static/css/main.bd289d3a.css.map",
+    "main.375b0313.js.map": "/igui-convite/static/js/main.375b0313.js.map",
+    "453.263c0154.chunk.js.map": "/igui-convite/static/js/453.263c0154.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bd289d3a.css",
+    "static/js/main.375b0313.js"
+  ]
+}
