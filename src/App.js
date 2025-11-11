@@ -1,177 +1,87 @@
-import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 import { FaWhatsapp, FaInstagram } from "react-icons/fa";
 
-function App() {
-  const [showWelcome, setShowWelcome] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowWelcome(false);
-      window.scrollTo(0, 0); // força o scroll para o topo
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
+export default function App() {
   const perfil = {
-    nome: "iGUi - BARREIRAS E OESTE-BA",
+    nome: "Convite Especial - iGUi Conceito Barreiras",
     descricao:
-      "Acesse nossos canais de relacionamento e descubra um novo conceito de piscinas.",
-    imagem: process.env.PUBLIC_URL + "/profile.png",
+      "Você é nosso convidado VIP para o pré-lançamento da nova iGUi Conceito Barreiras! 💙\nVenha conhecer a loja, brindar conosco e viver essa nova experiência.",
+    data: "📅 Sexta-feira, 22 de novembro de 2025 - 19h30",
+    local: "📍 Av. Ahylon Macêdo, 2450 - Barreiras/BA",
+    imagem: process.env.PUBLIC_URL + "/convite.png",
   };
 
   const links = [
     {
-      nome: "WhatsApp iGUi BRS-BA",
-      url: "https://wa.me/5577999364498",
+      nome: "Confirmar Presença no WhatsApp",
+      url: "https://wa.me/5577999364498?text=Confirmo%20minha%20presença%20no%20pré-lançamento%20da%20iGUi%20Conceito%20Barreiras!",
       cor: "#25D366",
-      icone: <FaWhatsapp size={50} color="#25D366" />,
+      icone: <FaWhatsapp size={26} color="white" />,
     },
     {
-      nome: "Instagram iGUi BRS-BA",
-      url: "https://www.instagram.com/iguibarreiras.oestebaiano?igsh=NXYzcGRuMmFiYnVr&utm_source=qr",
+      nome: "Ver Localização no Google Maps",
+      url: "https://maps.app.goo.gl/6yVbH7h4PQrrrF6E7",
+      cor: "#4285F4",
+      icone: (
+        <img
+          src={process.env.PUBLIC_URL + "/maps.png"}
+          alt="Maps"
+          style={{ width: 26, height: 26 }}
+        />
+      ),
+    },
+    {
+      nome: "Seguir no Instagram",
+      url: "https://www.instagram.com/iguiconceitobarreiras/",
       cor: "#E4405F",
-      icone: <FaInstagram size={50} color="#E4405F" />,
-    },
-    {
-      nome: "iGUi Cerâmica",
-      url: "https://totem.igui.com/pools",
-      cor: "#009FE3",
-      icone: (
-        <img
-          src={process.env.PUBLIC_URL + "/igui-logo.png"}
-          alt="iGUi Cerâmica"
-          style={{ width: "50px", height: "50px" }}
-        />
-      ),
-    },
-    {
-      nome: "iGUi UNLIMITED",
-      url: "https://www.unlimitedpool.com/",
-      cor: "#555",
-      icone: (
-        <img
-          src={process.env.PUBLIC_URL + "/igui-unlimited.png"}
-          alt="iGUi UNLIMITED"
-          style={{ width: "50px", height: "50px" }}
-        />
-      ),
+      icone: <FaInstagram size={26} color="white" />,
     },
   ];
 
   return (
-    <div
-      style={{
-        fontFamily: "Arial, sans-serif",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        backgroundColor: "#f2f2f2",
-        minHeight: "100vh",
-        padding: "40px 20px",
-        overflow: "hidden",
-      }}
-    >
-      {/* Tela de boas-vindas */}
-      <AnimatePresence>
-        {showWelcome && (
-          <motion.div
-            initial={{ y: "100%", opacity: 0 }}
-            animate={{ y: "0%", opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              backgroundColor: "#fff",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              zIndex: 1000,
-            }}
-          >
-            <motion.img
-              src={process.env.PUBLIC_URL + "/boasvindas.png"}
-              alt="Boas-vindas"
-              initial={{ y: 200, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 1.2, ease: "easeOut" }}
-              style={{
-                width: "100%",
-                maxWidth: "500px",
-                objectFit: "contain",
-              }}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-sky-200 to-sky-500 text-center p-4">
+      <motion.div
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="max-w-md w-full bg-white shadow-2xl rounded-2xl p-6"
+      >
+        <motion.img
+          src={perfil.imagem}
+          alt="Convite"
+          className="w-40 h-40 object-cover rounded-full mx-auto border-4 border-sky-400"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        />
+        <h1 className="text-2xl font-bold text-sky-700 mt-4">{perfil.nome}</h1>
+        <p className="text-gray-600 mt-3 whitespace-pre-line">{perfil.descricao}</p>
+        <p className="text-gray-700 mt-4 font-semibold">{perfil.data}</p>
+        <p className="text-gray-700 mb-6">{perfil.local}</p>
 
-      {/* Conteúdo principal */}
-      {!showWelcome && (
-        <>
-          <div style={{ textAlign: "center", marginBottom: 30 }}>
-            <img
-              src={perfil.imagem}
-              alt={perfil.nome}
-              style={{
-                width: 100,
-                height: 100,
-                borderRadius: "50%",
-                objectFit: "cover",
-                border: "3px solid #009FE3",
-              }}
-            />
-            <h1 style={{ marginTop: 15, marginBottom: 5, color: "#000" }}>
-              {perfil.nome}
-            </h1>
-            <p style={{ color: "#666", fontSize: 14 }}>{perfil.descricao}</p>
-          </div>
+        <div className="space-y-3">
+          {links.map((link, index) => (
+            <motion.a
+              key={index}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center justify-center gap-3 text-white font-semibold py-3 rounded-xl shadow-lg"
+              style={{ backgroundColor: link.cor }}
+            >
+              {link.icone}
+              {link.nome}
+            </motion.a>
+          ))}
+        </div>
 
-          <div style={{ width: "100%", maxWidth: 400 }}>
-            {links.map((link) => (
-              <a
-                key={link.nome}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  textDecoration: "none",
-                  color: "#000",
-                  backgroundColor: "#fff",
-                  borderRadius: 12,
-                  padding: "12px 16px",
-                  margin: "10px 0",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 12,
-                  boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
-                  transition: "transform 0.2s ease, box-shadow 0.2s ease",
-                  width: "100%",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-3px)";
-                  e.currentTarget.style.boxShadow =
-                    "0 4px 10px rgba(0,0,0,0.15)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow =
-                    "0 2px 6px rgba(0,0,0,0.1)";
-                }}
-              >
-                {link.icone}
-                <span>{link.nome}</span>
-              </a>
-            ))}
-          </div>
-        </>
-      )}
+        <footer className="text-gray-400 text-sm mt-8">
+          © 2025 iGUi Conceito Barreiras
+        </footer>
+      </motion.div>
     </div>
   );
 }
-
-export default App;
